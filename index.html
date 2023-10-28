@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>2023唯理书院反馈问卷</title>
+    <!-- 引入刚刚下载的 ECharts 文件 -->
+    <script src="echarts.js"></script>
+    <style>
+        .chart-container {
+            width: 600px;
+            height: 400px;
+            float: left;
+            margin: 10px;
+        }
+        .column {
+            width: 50%; /* 每列占页面宽度的一半 */
+            float: left;
+        }
+
+    .page-title {
+    text-align: center;
+    }
+    </style>
+</head>
+<body>
+<div class="page-title">
+    <h1>2023唯理书院反馈问卷</h1>
+</head>
+<body>
+<div class="column">
+    <div class="chart-container" id="chart1"></div>
+    <div class="chart-container" id="chart2"></div>
+    <div class="chart-container" id="chart3"></div>
+    <div class="chart-container" id="chart4"></div>
+
+</div>
+<div class="column">
+    <div class="chart-container" id="chart5"></div>
+    <div class="chart-container" id="chart6"></div>
+    <div class="chart-container" id="chart7"></div>
+    <div class="chart-container" id="chart8"></div>
+
+</div>
+<script type="text/javascript">
+    // 初始化第一个 ECharts 实例
+    let myChart1 = echarts.init(document.getElementById('chart1'));
+
+    // 指定图表的配置项和数据
+   let option1 = {
+           title: {
+               text: '晚间活动喜爱度调查',
+               left: 'center'
+           },
+           tooltip: {
+               trigger: 'item'
+           },
+
+           series: [
+               {
+                   name: 'Access From',
+                   type: 'pie',
+                   radius: '50%',
+                   data: [
+                       { value: 4, name: '7.29 破冰之夜' },
+                       //{ value: 0, name: '7.30 学术写作-阅读工作坊' },
+                       { value: 5, name: '7.30 学术与人生工作坊' },
+                       { value: 1, name: '7.30 纪录片连连看：《Try harder!》' },
+                       { value: 4, name: '7.31 应用戏剧工作坊' },
+                       { value: 1, name: '7.31 电影放映：《柏林苍穹下》' },
+                       //{ value: 0, name: '7.31 纪录片连连看：《美国工厂》' },
+                       { value: 5, name: '8.1 Panel：父权资本世界学术生存指南'},
+                       { value: 2, name: '8.1 Panel：数学那些事儿' },
+                       { value: 3, name: '8.1 PPT之夜' },
+                       //{ value: 0, name: '8.1 纪录片连连看：《沿江而上》' },
+                       //{ value: 0, name: '8.2 Kpop在广州'},
+                       { value: 1, name: '8.2 MBTI与荣格八维' },
+                       { value: 1, name: '8.2 Natural Language Processing and Social Interaction' },
+                       //{ value: 0, name: '8.2 纪录片连连看：《梦响唐人街》'},
+                       //{ value: 0, name: '8.3 电影放映：《行走的布达拉》'},
+                       { value: 2, name: '8.3 电影放映：《自梳》'},
+                       { value: 1, name: '8.3 电影放映：《山》' },
+                       //{ value: 0, name: '8.4 与知识的政治&阿伦特讲师的午间讨论'},
+                       { value: 3, name: '8.4 AI、意识、和人：跨学科视角下的ChatGPT'},
+                       { value: 4, name:'8.4 Panel：精英教育与优绩主义：我们对教育的反思与期待'},
+                       { value: 1, name: '8.4 Panel：影视作品中被观看的“她”' },
+                       { value: 5, name: '8.5 一站到底'},
+                   ],
+                   emphasis: {
+                       itemStyle: {
+                           shadowBlur: 10,
+                           shadowOffsetX: 0,
+                           shadowColor: 'rgba(0, 0, 0, 0.5)'
+                       }
+                   }
+               }
+           ]
+       };
+
+
+            // 使用第一个配置项和数据显示第一个图表。
+
+    myChart1.setOption(option1);
+
+    // 初始化第二个 ECharts 实例
+    // 指定第二个图表的配置项和数据
+    let myChart2 = echarts.init(document.getElementById('chart2'));
+    let option2 = {
+            title:{
+                text: '唯理伙伴对书院体验的帮助程度',
+                left: 'center',
+                top: 20,
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                top: '15%',
+                left: 'center',
+                // doesn't perfectly work with our tricks, disable it
+                selectedMode: false
+            },
+            series: [
+                {
+                    name: 'Access From',
+                    type: 'pie',
+                    radius: ['40%', '70%'],
+                    center: ['50%', '70%'],
+                    // adjust the start angle
+                    startAngle: 180,
+                    label: {
+                        show: true,
+                        formatter(param) {
+                            // correct the percentage
+                            return param.name + ' (' + param.percent * 2 + '%)';
+                        }
+                    },
+                    data: [
+                        { value: 35, name: '很有帮助' },
+                        { value: 14, name: '有一点帮助' },
+                        { value: 0, name: '没有帮助' },
+                        {
+                            // make an record to fill the bottom 50%
+                            value:49,
+                            itemStyle: {
+                                // stop the chart from rendering this piece
+                                color: 'none',
+                                decal: {
+                                    symbol: 'none'
+                                }
+                            },
+                            label: {
+                                show: false
+                            }
+                        }
+                    ]
+                }
+            ]
+        };
+
+
+        // 使用第二个配置项和数据显示第二个图表。
+    myChart2.setOption(option2);
+
+    let myChart3 = echarts.init(document.getElementById('chart3'));
+    let option3 = {
+        title: {
+            text: '未来希望开设的学科课程/活动',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left'
+        },
+        series: [
+            {
+                name: 'Access From',
+                type: 'pie',
+                radius: '50%',
+                data: [
+                    { value: 1, name: '法理学' },
+                    { value: 4, name: '哲学/古典哲学/哲学史' },
+                    { value: 2, name: '地理学/人文地理' },
+                    { value: 2, name: '经济学' },
+                    { value: 1, name: '人类学' },
+                    { value: 3, name: '生物学' },
+                    { value: 1, name: '医学' },
+                    { value: 2, name: '流行文化' },
+                    { value: 2, name: '政治学' },
+                    { value: 2, name: '历史学' },
+                    { value: 2, name: '心理学' },
+                    { value: 1, name: '跨文化' },
+                    { value: 3, name: '艺术/设计/美术' },
+                    { value: 2, name: '语言学' },
+                    { value: 1, name: '化学' },
+                    { value: 1, name: '戏剧' },
+                ],
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+
+    // 使用第三个配置项和数据显示第三个图表。
+    myChart3.setOption(option3);
+
+    let myChart4 = echarts.init(document.getElementById('chart4'));
+
+    let option4 = {
+        title:{
+            text: "书院价格合理度调查",
+            left:"center"
+        },
+
+        tooltip: {
+            trigger: 'item'
+        },
+        legend: {
+            top: '10%',
+            left: 'center',
+            // doesn't perfectly work with our tricks, disable it
+            selectedMode: false
+        },
+        series: [
+            {
+                name: 'Access From',
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['50%', '70%'],
+                // adjust the start angle
+                startAngle: 180,
+                label: {
+                    show: true,
+                    formatter(param) {
+                        // correct the percentage
+                        return param.name + ' (' + param.percent * 2 + '%)';
+                    }
+                },
+                data: [
+                    { value: 46, name: '合理' },
+                    { value: 3, name: '不合理' },
+                    {
+                        // make an record to fill the bottom 50%
+                        value: 49,
+                        itemStyle: {
+                            // stop the chart from rendering this piece
+                            color: 'none',
+                            decal: {
+                                symbol: 'none'
+                            }
+                        },
+                        label: {
+                            show: false
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+
+    myChart4.setOption(option4);
+
+
+    let myChart5 = echarts.init(document.getElementById('chart5'));
+    let option5 = {
+        title: {
+            text: '晚间活动整体满意度', // 添加标题
+            left: 'center' // 设置标题居中
+        },
+        legend: {
+            left: 'center',
+            top: '10%',
+            data: [
+                '满意' ,
+                '很满意' ,
+                '一般',
+                '很不满意',
+                '没有参与'
+            ]
+        },
+        tooltip: {
+            trigger: 'item', // 设置触发类型为 'item'
+            formatter: '{a} <br/>{b}: {c} ({d}%)' // 自定义提示框内容，显示图块名称和数值
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                mark: { show: true },
+                dataView: { show: true, readOnly: false },
+                restore: { show: true },
+                saveAsImage: { show: true }
+            }
+        },
+        series: [
+            {
+                name: '晚间活动体验整体满意度',
+                type: 'pie',
+                radius: [50, 100], // 将外半径改为200
+                center: ['50%', '50%'],
+                roseType: 'area',
+                itemStyle: {
+                    borderRadius: 5
+                },
+                data: [
+                    { value: 25, name: '很满意' },
+                    { value: 19, name: '满意' },
+                    { value: 3, name: '一般' },
+                    { value: 1, name: '很不满意' },
+                    { value: 1, name: '没有参与' },
+                ]
+            }
+        ]
+    };
+        myChart5.setOption(option5);
+
+    let myChart6 = echarts.init(document.getElementById('chart6'));
+    let option6 = {
+        title: {
+            text: '书院整体社交及学术外氛围满意度',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b} : {c} ({d}%)'
+        },
+        legend: {
+            left: 'center',
+            top: '10%',
+            data: [
+                '非常满意' ,
+                '比较满意' ,
+                '不满意',
+            ]
+        },
+        toolbox: {
+            show: true ,
+            feature: {
+                mark: { show: true },
+                dataView: { show: true, readOnly: false },
+                restore: { show: true },
+                saveAsImage: { show: true }
+            }
+        },
+        series: [
+            {
+                name: '整体满意度',
+                type: 'pie',
+                radius: [20, 100],
+                center: ['50%', '55%'],
+                roseType: 'area',
+                itemStyle: {
+                    borderRadius: 5
+                },
+                data: [
+                    { value: 21, name: '非常满意' },
+                    { value: 28, name: '比较满意' },
+                    { value: 0, name: '不满意' },
+
+                ]
+            }
+        ]
+    };
+    myChart6.setOption(option6);
+
+    let myChart7 = echarts.init(document.getElementById('chart7'));
+    let option7 = {
+        title:{
+            text:"对酒店住宿体验的整体满意度",
+            left: "center"
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+        legend: {
+            top: '10%',
+            left: 'center'
+        },
+        series: [
+            {
+                name: 'Access From',
+                type: 'pie',
+                radius: ['30%', '60%'],
+                avoidLabelOverlap: false,
+                itemStyle: {
+                    borderRadius: 10,
+                    borderColor: '#fff',
+                    borderWidth: 2
+                },
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: 40,
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [
+                    { value: 8, name: '不住酒店' },
+                    { value: 17, name: '很满意' },
+                    { value: 10, name: '满意' },
+                    { value: 11, name: '一般' },
+                    { value: 3, name: '不满意' }
+                ]
+            }
+        ]
+    };
+    myChart7.setOption(option7);
+
+    let myChart8 = echarts.init(document.getElementById('chart8'));
+    let option8 = {
+        title: {
+            text: '书院费用应该减少多少更合理', // 添加标题
+            left: 'center' // 设置标题居中
+        },
+        xAxis: {
+            type: 'value',
+            name: '减少的价格数/元' // 设置X轴名称
+        },
+        yAxis: {
+            type: 'value',
+            name: '选填此项的学生人数' // 设置Y轴名称
+        },
+        grid: {
+            left: '20%',  // 调整左边距
+            right: '20%', // 调整右边距
+            top: '20%',   // 调整上边距
+            bottom: '20%' // 调整下边距
+        },
+        series: [
+            {
+                symbolSize: 20,
+                data: [
+                    [3000, 1],
+                    [2000, 1],
+                    [1800, 1],
+                    [1000, 7],
+                    [600, 1],
+                    [500, 4],
+                    [400, 1],
+                    [300, 3],
+                    [200, 1],
+                    [100, 1],
+
+                ],
+                type: 'scatter'
+            }
+        ]
+    };
+    myChart8.setOption(option8);
+</script>
+</body>
+</html>
